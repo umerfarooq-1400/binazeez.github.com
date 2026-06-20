@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bin Azeez Perfumes | Premium Arabic & Oud Fragrances</title>
+<meta name="description" content="Discover premium Arabic & Oud fragrances by Bin Azeez Perfumes. Shop Regal Oud and Lush Flora — handcrafted scents delivered across Pakistan.">
+<meta name="keywords" content="Arabic perfume Pakistan, Oud perfume, Bin Azeez, luxury fragrance Karachi, buy perfume online Pakistan">
+<meta property="og:title" content="Bin Azeez Perfumes | Premium Arabic & Oud Fragrances">
+<meta property="og:description" content="Premium Arabic & Oud fragrances. Shop Regal Oud and Lush Flora. Free delivery above Rs. 3,000.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://umerfarooq-1400.github.io/binazeez.github.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--cyan:#1CB8D6;--gold:#b8930a;--red:#c0392b;--gray:#8a8a8a;--light:#f8f5f1;--border:#ececec}
@@ -898,7 +906,7 @@ function placeOrder(){
 // ADMIN PANEL JS — JSONBin Live Sync
 // ══════════════════════════════════════
 const ADMIN_PASS = 'binazeez2025';
-const BIN_ID = '6a36cc0ef5f4af5e29152454';
+const BIN_ID = '6a36d5f2f5f4af5e29154a33';
 const API_KEY = '$2a$10$S8khmosJqcmY9.uVa13lpu7ZITU75YWcpKBH95N.raqsAxyDtjHXG';
 const BIN_URL = 'https://api.jsonbin.io/v3/b/' + BIN_ID;
 let adminAuthed = false;
@@ -906,7 +914,12 @@ let adminAuthed = false;
 // ── Fetch settings from JSONBin and apply to page ──
 function fetchAndApply(){
   fetch(BIN_URL+'/latest', {
-    headers: {'X-Master-Key': API_KEY}
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'X-Master-Key': API_KEY,
+      'X-Bin-Meta': 'false'
+    }
   })
   .then(r=>r.json())
   .then(data=>{
@@ -961,9 +974,11 @@ function saveToJSONBin(s, successMsg){
   adminNotif('⏳ Saving...');
   fetch(BIN_URL, {
     method: 'PUT',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
-      'X-Master-Key': API_KEY
+      'X-Master-Key': API_KEY,
+      'X-Bin-Meta': 'false'
     },
     body: JSON.stringify(s)
   })
@@ -983,7 +998,12 @@ function saveToJSONBin(s, successMsg){
 // ── Get current settings from JSONBin then update ──
 function updateSettings(updateFn, successMsg){
   fetch(BIN_URL+'/latest', {
-    headers: {'X-Master-Key': API_KEY}
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'X-Master-Key': API_KEY,
+      'X-Bin-Meta': 'false'
+    }
   })
   .then(r=>r.json())
   .then(data=>{
@@ -1052,7 +1072,7 @@ function aTab(name,el){
 
 function loadAdminData(){
   renderAdminOrders();
-  fetch(BIN_URL+'/latest', { headers:{'X-Master-Key': API_KEY} })
+  fetch(BIN_URL+'/latest', { method:'GET', mode:'cors', headers:{'X-Master-Key': API_KEY, 'X-Bin-Meta':'false'} })
   .then(r=>r.json())
   .then(data=>{
     const s=data.record||{};
